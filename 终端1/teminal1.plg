@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\E×é+Ê±éð\ÖÕ¶Ë1\teminal1.uvproj
+Project File Date:  05/15/2016
+
+<h2>Output:</h2>
+compiling teminal1.c...
+TEMINAL1.C(1): error C100: unprintable character 0xEF skipped
+TEMINAL1.C(1): error C100: unprintable character 0xBB skipped
+TEMINAL1.C(1): error C100: unprintable character 0xBF skipped
+TEMINAL1.C(1): error C141: syntax error near '#'
+TEMINAL1.C(1): error C129: missing ';' before 'uchar'
+teminal1.c - 5 Error(s), 0 Warning(s).
+compiling teminal1.c...
+teminal1.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling teminal1.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WRITE_COM?TEMINAL1
+Program Size: data=102.2 xdata=0 code=1310
+creating hex file from "teminal1"...
+"teminal1" - 0 Error(s), 1 Warning(s).

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"teminal2.obj" 
+TO "teminal2" 
+RAMSIZE(256) 

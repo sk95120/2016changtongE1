@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"mainframe.obj" 
+TO "mainframe" 
+RAMSIZE(256) 

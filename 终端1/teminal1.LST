@@ -1,0 +1,65 @@
+C51 COMPILER V9.01   TEMINAL1                                                              05/17/2016 13:41:23 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TEMINAL1
+OBJECT MODULE PLACED IN teminal1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE teminal1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #define uchar unsigned char
+   2          #define uint unsigned int
+   3          #define Machine '1' //终端编号1
+   4          #define Array_Max 80
+   5          #include <reg52.h>
+   6          #include <intrins.h>
+   7          #include "PS2.h"
+   8          #include "LCD1602.h"
+   9          #include "TIME.h"
+  10          #include "SENT.h"
+  11          
+  12          void main(void){
+  13   1              uchar keyb_Code,code_Temp='@';
+  14   1              init();         //液晶屏屏、时间初始化
+  15   1              init_time();
+  16   1      
+  17   1              while(1){
+  18   2                      keyb_Code=keyb_Get();
+  19   2                      if(keyb_Code!=0xff){ // 无视乱电位
+  20   3                              if(keyb_Code=='@'){ //0xf0的断码提示 
+  21   4                                      keyb_Code=keyb_Get(); 
+  22   4                                      time_show(1,keyb_Code);
+  23   4                                      sent_m(1,keyb_Code); //将数据保存到数组
+  24   4                                      now_num+=5;                     //数组的内容增加
+  25   4                                      if(now_num>Array_Max)   //如果数组溢出，采用循环队列数据结构逐个覆盖原数据
+  26   4                                              now_num=Array_Max;
+  27   4                              }else{
+  28   4                                      if(keyb_Code!=code_Temp){
+  29   5                                              time_show(0,keyb_Code);
+  30   5                                              code_Temp=keyb_Code;
+  31   5                                              sent_m(0,keyb_Code);
+  32   5                                              now_num+=5;
+  33   5                                              if(now_num>Array_Max)
+  34   5                                                      now_num=Array_Max;
+  35   5                                      }
+  36   4                                      
+  37   4                              }
+  38   3                      }
+  39   2                      if(sec==30&&ms==30) //定时自动上传数据
+  40   2                              auto_sent();                                            
+  41   2              }
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1169    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     92       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
